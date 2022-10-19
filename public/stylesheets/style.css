@@ -1,0 +1,64 @@
+@import url('https://fonts.googleapis.com/css2?family=Dosis:wght@200&family=Montez&display=swap');
+body {
+  /* padding: 50px; */
+  background:  #FFFCFC;
+}
+
+*{
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+.logo{
+  cursor: pointer;
+  font-family: 'Dosis', sans-serif;
+  font-size: 50px;
+}
+
+li, a{
+  font-family: 'Dosis', sans-serif;
+  font-size: 20px;
+  color: black;
+  text-decoration: none;
+}
+
+header{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 30px 10%;
+}
+
+.nav__links li{
+  position: relative;
+  left: 40rem;
+  display: inline-block;
+  padding: 0px 20px;
+}
+
+.nav__links li a{
+  transition: all 0.3s ease 0s;
+}
+
+.nav__links li a:hover{
+  text-decoration: underline;
+  text-decoration-color: rgb(121, 83, 39);
+}
+
+button {
+  padding: 9px 25px;
+  background-color: rgb(121, 83, 39);
+  border: none;
+  border-radius: 50px;
+  cursor: pointer;
+  transition: all 0.3s ease 0s;
+  font-family: 'Dosis', sans-serif;
+  font-size: 20px;
+  color: white
+}
+
+button:hover{
+  background-color: rgb(189, 150, 92);
+}
+

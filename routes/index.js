@@ -22,4 +22,8 @@ router.get('/feedback', function(req, res, next){
   res.render('feedback');
 });
 
+router.get('/chat-window', function(req, res, next){
+  res.render('chat-window');
+});
+
 module.exports = router;

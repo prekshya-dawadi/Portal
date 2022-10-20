@@ -1,7 +1,9 @@
 @import url('https://fonts.googleapis.com/css2?family=Dosis:wght@200&family=Montez&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap');
 body {
   /* padding: 50px; */
   background:  #FFFCFC;
+  font-family: 'Dosis', sans-serif;
 }
 
 *{
@@ -14,6 +16,19 @@ body {
   cursor: pointer;
   font-family: 'Dosis', sans-serif;
   font-size: 50px;
+  font-weight: bold;
+}
+
+.home-image-position{
+  position: relative;
+  left: 50rem;
+  top: 20rem;
+}
+
+.static-image-position{
+  position: relative;
+  left: 12rem;
+  top: 10rem;
 }
 
 li, a{
@@ -21,6 +36,10 @@ li, a{
   font-size: 24px;
   color: black;
   text-decoration: none;
+}
+
+a:link{
+  color: black;
 }
 
 header{
@@ -41,9 +60,10 @@ header{
   transition: all 0.3s ease 0s;
 }
 
-.nav__links li a:hover{
+.nav__links li a:hover a:visited{
   text-decoration: underline;
   text-decoration-color: rgb(121, 83, 39);
+  color:rgb(173, 133, 87);
 }
 
 button {
@@ -62,3 +82,26 @@ button:hover{
   background-color: rgb(189, 150, 92);
 }
 
+.card-position{
+  position: relative;
+  display: inline-block;
+  justify-content: space-between;
+  margin-left: 12rem;
+  /*top: 6rem; */
+}
+
+.heading{
+  position:relative;
+  margin-left: 12rem;
+  font-family: 'Dosis', sans-serif;
+  font-size: 32px;
+  font-weight: bold;
+}
+
+p{
+  position: relative;
+  left: 53rem;
+  text-align: left;
+  font-family: 'Roboto', sans-serif;
+  font-size: 16px;
+}

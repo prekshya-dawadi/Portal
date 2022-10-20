@@ -1,0 +1,2 @@
+Socket used for chat. 
+To track changes in users and rooms, the information is directly taken from the url, and for that a library called query-string is used.

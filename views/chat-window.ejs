@@ -5,7 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous" />
   <link rel='stylesheet' href='/stylesheets/style.css' />
-
+  <script src="https://cdn.socket.io/socket.io-1.4.5.js"></script>
+  <script src="/socket.io/socket.io.js"></script>
   <title>Portal</title>
 </head>
 <body>
@@ -27,22 +28,7 @@
           <li>Mike</li>
         </ul>
       </div>
-      <div class="chat-messages">
-					<div class="message">
-						<p class="meta">Brad <span>9:12pm</span></p>
-						<p class="text">
-							Lorem ipsum dolor sit amet consectetur adipisicing elit. Eligendi,
-							repudiandae.
-						</p>
-					</div>
-					<div class="message">
-						<p class="meta">Mary <span>9:15pm</span></p>
-						<p class="text">
-							Lorem ipsum dolor sit amet consectetur adipisicing elit. Eligendi,
-							repudiandae.
-						</p>
-					</div>
-      </div>
+      <div class="chat-messages"></div>
     </main>
     <div class="chat-form-container">
       <form id="chat-form">
@@ -57,7 +43,9 @@
       </form>
     </div>
   </div>
+  <!-- placing main.js at the header along with the other scripts causes
+  the cannot read null value: addEventlistener error-->
+  <script src="/javascripts/main.js"></script>
 
-  <script src="js/main.js"></script>
 </body>
 </html>

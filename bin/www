@@ -6,7 +6,10 @@
 var app = require('../app');
 var debug = require('debug')('portal:server');
 var http = require('http');
-
+const socketio = require('socket.io');
+//Imported formatMessage object from utils/messages
+const formatMessage = require('../utils/messages');
+const bot = 'bot';
 /**
  * Get port from environment and store in Express.
  */
@@ -19,7 +22,7 @@ app.set('port', port);
  */
 
 var server = http.createServer(app);
-
+const io = socketio(server);
 /**
  * Listen on provided port, on all network interfaces.
  */
@@ -87,3 +90,25 @@ function onListening() {
     : 'port ' + addr.port;
   debug('Listening on ' + bind);
 }
+
+
+
+io.on('connection', socket=>{
+  //emits to the single client that's connected
+
+  // Broadcast when a user connects- emits to all the 
+  // users except the broadcaster.
+  socket.broadcast.emit('message', formatMessage(bot,'A user has joined the chat'));
+
+  //Runs when the client disconnects
+  socket.on('disconnect', ()=>{
+    io.emit('message',formatMessage(bot,'A user has left the chat.'));
+  });
+
+  // all the clients -> io.emit()
+
+  // Listen for chatMessage
+  socket.on('chatMessage', (msg)=>{
+    io.emit('message',formatMessage('user', msg));
+  });
+});

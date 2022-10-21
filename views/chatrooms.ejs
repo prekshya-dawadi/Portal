@@ -32,52 +32,16 @@
 
   <% cardsList.forEach((cards, index)=>{ %>
 
-  <div class="card card-position" style="width: 18rem;">
-    <div class="card-body">
-      <img src = "<%= cards.imgurl %>" id = "img" alt="Poster Picture" class="card-img-top">  
-      <h5 class="card-title"><%= cards.title %></h5>
-      <p class="card-text"><%= cards.description %></p>
-      <button id="enterButton" onclick = "on()">Enter</button>
+    <div class="card card-position" style="width: 18rem;">
+      <div class="card-body">
+        <img src = "<%= cards.imgurl %>" id = "img" alt="Poster Picture" class="card-img-top">  
+        <h5 class="card-title"><%= cards.title %></h5>
+        <p class="card-text"><%= cards.description %></p>
+        <a href="/chat/:<%= cards._id %>"><button id="enterButton">Enter</button></a>
     </div>
   </div>
-    <script>
 
-    </script>
   <% }) %>
-
-  <!-- Overlay for username input -->
-
-  <div id="overlay">
-    <div id="overlay-text">
-      <p>Username for this room: </p>
-      <input type="text" id="username" placeholder="Enter username"/>
-      <a href="/chat-window"><Button id="overlay-enter-button" type="submit">Enter</Button></a>
-      <button id="exitButton" onclick = "off()">Exit</button>
-    </div>
-  </div>
-
-  
-  <script>
-    on=()=>{
-      document.getElementById("overlay").style.display="block";
-    }
-
-    off=()=>{
-      document.getElementById("overlay").style.display="none";
-    }
-
-    const btn = document.getElementById('overlay-enter-button');
-
-    btn.addEventListener('submit', function handleClick(event){
-      event.preventDefault(); //prevents page reload incase of uses of form
-      const username = document.getElementById('username');
-
-      //Do something with the username
-      const user = username.value;
-            
-      username.value='';
-    });
-  </script>
 
   <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.7/dist/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>

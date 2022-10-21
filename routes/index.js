@@ -6,7 +6,7 @@ var router = express.Router();
 router.get('/', function(req, res, next) {
   res.render('index');
 });
-
+// Pages
 router.get('/chatrooms',async function(req, res, next){
   const Cards = await cards.find();
   res.render('chatrooms', {cardsList:Cards});
@@ -24,12 +24,14 @@ router.get('/feedback', function(req, res, next){
   res.render('feedback');
 });
 
-router.get('/chat/:id', async function(req, res, next){
+//Chat-windows with different ids.
+router.get('/chat/:channel_id', async function(req, res, next){
   const channel = await cards.findOne({_id: req.params.id});
   console.log(channel);
   res.render('chat-window',{channel: channel});
 });
 
+//Add new channels 
 router.get('/add', function(req, res, next){
   res.render('add', {title:"Add Channel"});
 });
@@ -44,6 +46,14 @@ router.post('/cardsinfo', async function(req, res, next){
   await card.save();
   res.redirect('/chatrooms');
 });
+
+//Enter a new channel
+// router.get('/usernameInput/:channel_id', async function(req, res, next){
+//   const channelId = req.params.channel_id;
+  
+//   res.render('usernameInput',{channelId: channelId});
+// });
+
 
 //only for development purposes.
 router.get('/delete', async function(req, res, next){

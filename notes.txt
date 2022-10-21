@@ -1,2 +1,34 @@
 Socket used for chat. 
 To track changes in users and rooms, the information is directly taken from the url, and for that a library called query-string is used.
+
+
+code for the overlay:
+<!-- Overlay for username input -->
+
+  <!-- <div id="overlay">
+    <div id="overlay-text">
+      <p>Username for this room: </p>
+      <input type="text" id="username" placeholder="Enter username"/>
+      <a href="chat/<%= cards._id%>"><Button id="overlay-enter-button" type="submit">Enter</Button></a>
+      <button id="exitButton" onclick = "off()">Exit</button>
+    </div>
+  </div>
+
+  
+  <script>
+    on=()=>{
+      document.getElementById("overlay").style.display="block";
+    }
+    off=()=>{
+      document.getElementById("overlay").style.display="none";
+    }
+    const btn = document.getElementById('overlay-enter-button');
+    btn.addEventListener('submit', function handleClick(event){
+      event.preventDefault(); //prevents page reload incase of uses of form
+      const username = document.getElementById('username');
+      //Do something with the username
+      const user = username.value;
+            
+      username.value='';
+    });
+  </script> -->

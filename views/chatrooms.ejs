@@ -26,36 +26,28 @@
 
   <div class="heading">Chatrooms</div>
 
+  <a href="/add"><button style="position:absolute; left:12rem; top:18rem;">Add Channel</button></a>
+
   <!--Chatrooms-->
 
+  <% cardsList.forEach((cards, index)=>{ %>
+
   <div class="card card-position" style="width: 18rem;">
-    <img src="https://static.onecms.io/wp-content/uploads/sites/6/2022/07/07/House_Of_The_Dragon_Considine_DArcy_Smith_1.jpg" class="card-img-top" alt="Poster of house of the dragons." style="height:22.5rem;">
     <div class="card-body">
-      <h5 class="card-title">House of dragons</h5>
-      <p class="card-text">Come, dance with the dragons.</p>
+      <img id = "img">
+      <script>    
+        document.getElementById("img").src = img.src;
+        document.getElementById("img").alt = "Poster Picture"
+      </script>
+      <h5 class="card-title"><%= cards.title %></h5>
+      <p class="card-text"><%= cards.description %></p>
       <button id="enterButton" onclick = "on()">Enter</button>
     </div>
   </div>
+    <script>
 
-  <div class="card card-position" style="width: 18rem;">
-    <img src="https://qph.cf2.quoracdn.net/main-qimg-bed421c2b2265271cde990a0ad9b0127-lq" class="card-img-top" alt="Poster of harry potter." style="height:22.5rem;">
-    <div class="card-body">
-      <h5 class="card-title">Harry Potter</h5>
-      <p class="card-text">Alohamora</p>
-      <button id="enterButton" onclick = "on()">Enter</button>
-
-    </div>
-  </div>
-
-  <div class="card card-position" style="width: 18rem;">
-    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRomv9F-uCF2480TfnY00USwjurvY0WUT-o2w&usqp=CAU" class="card-img-top" alt="Poster of rings of power." style="height:22.5rem;">
-    <div class="card-body">
-      <h5 class="card-title">Rings of Power</h5>
-      <p class="card-text">Behold! The power of my precious!</p>
-      <button id="enterButton" onclick = "on()">Enter</button>
-
-    </div>
-  </div>
+    </script>
+  <%})%>
 
   <!-- Overlay for username input -->
 
@@ -67,7 +59,16 @@
     </div>
   </div>
 
+  
   <script>
+      // var img = new Image();
+      // img.src = cards.imgurl;
+      // // The URL isn't valid or the resource isn't a picture
+      // img.onerror = function() { alert("Provided URL does not point to a valid picture.") };
+    
+      // // Ok, we have correct picture; display it
+      // img.onload = function() {
+      //};
     on=()=>{
       document.getElementById("overlay").style.display="block";
     }
@@ -78,12 +79,13 @@
 
     const btn = document.getElementById('overlay-enter-button');
 
-    btn.addEventListener('click', function handleClick(event){
+    btn.addEventListener('submit', function handleClick(event){
       event.preventDefault(); //prevents page reload incase of uses of form
       const username = document.getElementById('username');
 
       //Do something with the username
-
+      const user = username.value;
+            
       username.value='';
     });
   </script>

@@ -1,13 +1,15 @@
 var express = require('express');
+const cards = require('../model/cards');
 var router = express.Router();
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-  res.render('index', { title: 'Portal' });
+  res.render('index');
 });
 
-router.get('/chatrooms', function(req, res, next){
-  res.render('chatrooms');
+router.get('/chatrooms',async function(req, res, next){
+  const Cards = await cards.find();
+  res.render('chatrooms', {cardsList:Cards});
 });
 
 router.get('/contribute', function(req, res, next){
@@ -25,5 +27,29 @@ router.get('/feedback', function(req, res, next){
 router.get('/chat-window', function(req, res, next){
   res.render('chat-window');
 });
+
+router.get('/add', function(req, res, next){
+  res.render('add', {title:"Add Channel"});
+});
+
+router.post('/cardsinfo', async function(req, res, next){
+  const card = new cards({
+    title: req.body.title, 
+    description: req.body.description,
+    imgurl: req.body.imgurl
+  })
+
+  await card.save();
+  res.redirect('/chatrooms');
+});
+
+//only for development purposes.
+router.get('/delete', async function(req, res, next){
+  await cards.remove();
+  res.redirect('/');
+});
+
+
+
 
 module.exports = router;

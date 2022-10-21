@@ -9,6 +9,11 @@ var usersRouter = require('./routes/users');
 
 
 var app = express();
+// Database and database connection
+const mongoose = require('mongoose');
+mongoose.connect('mongodb://localhost/chat-roomsDB')
+        .then(()=>console.log('connected to db'))
+        .catch((e)=>console.log('error',e));
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
@@ -37,5 +42,6 @@ app.use(function(err, req, res, next) {
   res.status(err.status || 500);
   res.render('error');
 });
+
 
 module.exports = app;

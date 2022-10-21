@@ -24,8 +24,10 @@ router.get('/feedback', function(req, res, next){
   res.render('feedback');
 });
 
-router.get('/chat-window', function(req, res, next){
-  res.render('chat-window');
+router.get('/chat-window/:id', async function(req, res, next){
+  const channel = await cards.findOne({_id: req.params.id});
+  console.log(channel);
+  res.render('chat-window',{channel: channel});
 });
 
 router.get('/add', function(req, res, next){
@@ -37,7 +39,7 @@ router.post('/cardsinfo', async function(req, res, next){
     title: req.body.title, 
     description: req.body.description,
     imgurl: req.body.imgurl
-  })
+  });
 
   await card.save();
   res.redirect('/chatrooms');

@@ -34,11 +34,7 @@
 
   <div class="card card-position" style="width: 18rem;">
     <div class="card-body">
-      <img id = "img">
-      <script>    
-        document.getElementById("img").src = img.src;
-        document.getElementById("img").alt = "Poster Picture"
-      </script>
+      <img src = "<%= cards.imgurl %>" id = "img" alt="Poster Picture" class="card-img-top">  
       <h5 class="card-title"><%= cards.title %></h5>
       <p class="card-text"><%= cards.description %></p>
       <button id="enterButton" onclick = "on()">Enter</button>
@@ -47,7 +43,7 @@
     <script>
 
     </script>
-  <%})%>
+  <% }) %>
 
   <!-- Overlay for username input -->
 
@@ -56,19 +52,12 @@
       <p>Username for this room: </p>
       <input type="text" id="username" placeholder="Enter username"/>
       <a href="/chat-window"><Button id="overlay-enter-button" type="submit">Enter</Button></a>
+      <button id="exitButton" onclick = "off()">Exit</button>
     </div>
   </div>
 
   
   <script>
-      // var img = new Image();
-      // img.src = cards.imgurl;
-      // // The URL isn't valid or the resource isn't a picture
-      // img.onerror = function() { alert("Provided URL does not point to a valid picture.") };
-    
-      // // Ok, we have correct picture; display it
-      // img.onload = function() {
-      //};
     on=()=>{
       document.getElementById("overlay").style.display="block";
     }

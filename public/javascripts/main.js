@@ -1,7 +1,10 @@
 const chatForm = document.getElementById('chat-form');
 const chatMessages = document.querySelector('.chat-messages');
 const socket = io();
-var Room = 'HotD'
+
+var url = window.location.href.toString();
+Room = url.replace('http://localhost:3000/chat/:', ''); 
+
 // Message submit
 chatForm.addEventListener('submit', (e)=>{
     // when we submit a form, it automatically submits to a file
@@ -21,7 +24,6 @@ chatForm.addEventListener('submit', (e)=>{
 
 // Message from server
 socket.on('message',message=>{
-    console.log("The socketid of the client is: "+ socket.id);
     outputMessage(message);
 
     //scroll down
@@ -32,7 +34,6 @@ socket.on('message',message=>{
 
 // Output message to DOM
 function outputMessage(message){
-    console.log(message);
     const div = document.createElement('div');
     div.classList.add('message');
     div.innerHTML = `<p class="meta">${message.username} <span>${message.time}</span></p>

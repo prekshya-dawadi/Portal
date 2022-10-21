@@ -11,7 +11,6 @@ const socketio = require('socket.io');
 const formatMessage = require('../utils/messages');
 const bot = 'bot';
 const {userJoin, getCurrentUser} = require('../utils/users')
-var Room = 'HotD'
 /**
  * Get port from environment and store in Express.
  */
@@ -96,26 +95,30 @@ function onListening() {
 
 
 io.on('connection', socket=>{
-  socket.on('joinRoom', ({Room}) =>{
-    //emits to the single client that's connected
-    
-    //Hard-codded rn
-    socket.join(Room);
-    
-    // Broadcast when a user connects- emits to all the 
-    // users except the broadcaster.
-    socket.broadcast.to(Room).emit('message', formatMessage(bot,'A user has joined the chat'));
-    
-      // Listen for chatMessage
-    socket.on('chatMessage', (msg)=>{
-      io.emit('message',formatMessage('user', msg));
-    });
+  socket.on('joinRoom', (Room) =>{
+    const user = userJoin(socket.id,'user', Room);
+    socket.join(user.room);
 
-    //Runs when the client disconnects
-    socket.on('disconnect', ()=>{
-      io.emit('message',formatMessage(bot,'A user has left the chat.'));
-    });
+    // Welcome Current User
+    socket.emit('message', formatMessage(bot, 'Welcome to the channel!'));
 
+    // Broadcast when a user connects
+    socket.broadcast.to(user.room).emit(
+      'message',
+      formatMessage(bot, `${user.username} has joined the chat`)
+    ); 
+
+      //Listen for chatMessage
+    socket.on('chatMessage', msg =>{
+      io.to(user.room).emit('message', formatMessage('User', msg));
+    });
+  });
+
+
+
+  //Runs when client disconnects
+  socket.on('disconnect', ()=>{
+    io.emit('message', formatMessage(bot, 'A user has left the chat.'));
   });
   // all the clients -> io.emit()
 });
